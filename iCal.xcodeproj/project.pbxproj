@@ -10,6 +10,8 @@
 		6552F77F26EC1A8700CEE772 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552F77E26EC1A8700CEE772 /* AppDelegate.swift */; };
 		6552F78826EC1A8800CEE772 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6552F78726EC1A8800CEE772 /* Assets.xcassets */; };
 		6552F78B26EC1A8800CEE772 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6552F78926EC1A8800CEE772 /* LaunchScreen.storyboard */; };
+		65E9EC1A26F0494C0034BE91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E9EC1826F0494C0034BE91 /* HomeViewController.swift */; };
+		65E9EC1B26F0494C0034BE91 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E9EC1926F0494C0034BE91 /* HomeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,8 @@
 		6552F78726EC1A8800CEE772 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6552F78A26EC1A8800CEE772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6552F78C26EC1A8800CEE772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65E9EC1826F0494C0034BE91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		65E9EC1926F0494C0034BE91 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,10 +54,12 @@
 		6552F77D26EC1A8700CEE772 /* iCal */ = {
 			isa = PBXGroup;
 			children = (
-				65E9EC0C26F040090034BE91 /* SupportingFiles */,
 				6552F77E26EC1A8700CEE772 /* AppDelegate.swift */,
+				65E9EC1326F047D50034BE91 /* View */,
+				65E9EC1226F047C40034BE91 /* Controller */,
+				65E9EC1126F047BC0034BE91 /* Model */,
+				65E9EC0C26F040090034BE91 /* SupportingFiles */,
 				6552F78726EC1A8800CEE772 /* Assets.xcassets */,
-				6552F78926EC1A8800CEE772 /* LaunchScreen.storyboard */,
 			);
 			path = iCal;
 			sourceTree = "<group>";
@@ -64,6 +70,54 @@
 				6552F78C26EC1A8800CEE772 /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		65E9EC1126F047BC0034BE91 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65E9EC1226F047C40034BE91 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				65E9EC1726F048EE0034BE91 /* Home */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		65E9EC1326F047D50034BE91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65E9EC1626F048E20034BE91 /* Home */,
+				65E9EC1426F0481D0034BE91 /* Launch */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65E9EC1426F0481D0034BE91 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				6552F78926EC1A8800CEE772 /* LaunchScreen.storyboard */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		65E9EC1626F048E20034BE91 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				65E9EC1926F0494C0034BE91 /* HomeViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		65E9EC1726F048EE0034BE91 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				65E9EC1826F0494C0034BE91 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,7 +154,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6552F77626EC1A8700CEE772 /* Build configuration list for PBXProject "Apple Cal" */;
+			buildConfigurationList = 6552F77626EC1A8700CEE772 /* Build configuration list for PBXProject "iCal" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -125,6 +179,7 @@
 			files = (
 				6552F78B26EC1A8800CEE772 /* LaunchScreen.storyboard in Resources */,
 				6552F78826EC1A8800CEE772 /* Assets.xcassets in Resources */,
+				65E9EC1B26F0494C0034BE91 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6552F77F26EC1A8700CEE772 /* AppDelegate.swift in Sources */,
+				65E9EC1A26F0494C0034BE91 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +366,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6552F77626EC1A8700CEE772 /* Build configuration list for PBXProject "Apple Cal" */ = {
+		6552F77626EC1A8700CEE772 /* Build configuration list for PBXProject "iCal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6552F78D26EC1A8800CEE772 /* Debug */,
