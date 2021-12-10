@@ -35,6 +35,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6502B1E9273B61880053C0D4 /* Useful */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Useful;
+			sourceTree = "<group>";
+		};
 		6552F77226EC1A8700CEE772 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +66,7 @@
 				65E9EC1226F047C40034BE91 /* Controller */,
 				65E9EC1126F047BC0034BE91 /* Model */,
 				65E9EC0C26F040090034BE91 /* SupportingFiles */,
+				6502B1E9273B61880053C0D4 /* Useful */,
 				6552F78726EC1A8800CEE772 /* Assets.xcassets */,
 			);
 			path = iCal;
