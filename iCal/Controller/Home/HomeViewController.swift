@@ -47,40 +47,73 @@ final class HomeViewController: UIViewController {
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        round()
 
     }
     
     //MARK: - IBActions
-    @IBAction func operatorACAction(_ sender: Any) {
+    @IBAction func operatorACAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func operatorPlusMinusAction(_ sender: Any) {
+    @IBAction func operatorPlusMinusAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func operatorPercentAction(_ sender: Any) {
+    @IBAction func operatorPercentAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func operatorDivisionAction(_ sender: Any) {
+    @IBAction func operatorDivisionAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func operatorMultiplicationAction(_ sender: Any) {
+    @IBAction func operatorMultiplicationAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func operatorSubstractionAction(_ sender: Any) {
+    @IBAction func operatorSubstractionAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func operatorAdditionAction(_ sender: Any) {
+    @IBAction func operatorAdditionAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func operatorResultAction(_ sender: Any) {
+    @IBAction func operatorResultAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func numberDecimalAction(_ sender: Any) {
+    @IBAction func numberDecimalAction(_ sender: UIButton) {
+        sender.shine()
     }
     
-    @IBAction func numberAction(_ sender: Any) {
-        
+    @IBAction func numberAction(_ sender: UIButton) {
+        print(sender.tag)
+        sender.shine()
     }
     
+    func round() {
+        numberZeroButton.roundEdge()
+        numberOneButton.roundEdge()
+        numberTwoButton.roundEdge()
+        numberThreeButton.roundEdge()
+        numberFourButton.roundEdge()
+        numberFiveButton.roundEdge()
+        numberSixButton.roundEdge()
+        numberSevenButton.roundEdge()
+        numberEightButton.roundEdge()
+        numberNineButton.roundEdge()
+        numberDecimalButton.roundEdge()
+        operatorACButton.roundEdge()
+        operatorPlusMinusButton.roundEdge()
+        operatorPercentButton.roundEdge()
+        operatorDivisionButton.roundEdge()
+        operatorMultiplicationButton.roundEdge()
+        operatorSubstractionButton.roundEdge()
+        operatorAdditionButton.roundEdge()
+        operatorResultButton.roundEdge()
+    }
     
 }
