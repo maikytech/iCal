@@ -11,6 +11,7 @@ import UIKit
 final class HomeViewController: UIViewController {
     
     //MARK: - IBOulets
+    @IBOutlet weak var resultLabel: UILabel!
     
     //Numbers
     @IBOutlet weak var numberZeroButton: UIButton!
@@ -35,6 +36,48 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var operatorAdditionButton: UIButton!
     @IBOutlet weak var operatorResultButton: UIButton!
     
+    //MARK: - Private variables
+    private var total: Double = 0
+    private var temp: Double = 0
+    private var isOperationSelected = false
+    private var isDecimal = false
+    private var operation: OperationType = .none
+    
+    //MARK: - Constants
+    private let kDecimalSeparator = Locale.current.decimalSeparator
+    private let kMaxLenght = 9
+    private let maxValue = 999999999
+    private let minValue = 0.00000001
+    
+    private enum OperationType {
+        case none
+        case addiction
+        case substraction
+        case multiplication
+        case division
+        case percent
+    }
+    
+    private let auxFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        let locale = Locale.current
+        formatter.groupingSeparator = ""
+        formatter.decimalSeparator = locale.decimalSeparator
+        return formatter
+    }()
+    
+    private let printFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        let locale = Locale.current
+        formatter.groupingSeparator = locale.groupingSeparator
+        formatter.decimalSeparator = locale.decimalSeparator
+        formatter.numberStyle = .decimal
+        formatter.maximumIntegerDigits = 9
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 8
+        return formatter
+    }()
+    
     //MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -49,6 +92,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         round()
+        numberDecimalButton.setTitle(kDecimalSeparator, for: .normal)
 
     }
     
@@ -115,5 +159,16 @@ final class HomeViewController: UIViewController {
         operatorAdditionButton.roundEdge()
         operatorResultButton.roundEdge()
     }
+    
+//    func clearValues() {
+//        operation = .none
+//        operatorACButton.setTitle("AC", for: .normal)
+//        if temp != 0 {
+//            temp = 0
+//
+//        }else {
+//
+//        }
+//    }
     
 }
