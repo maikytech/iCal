@@ -228,9 +228,13 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         total = UserDefaults.standard.double(forKey: kInitialTotal)
-        
-        setupUI()
         result()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupUI()
+        
     }
     
     func setupUI() {
