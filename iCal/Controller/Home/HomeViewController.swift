@@ -46,8 +46,7 @@ final class HomeViewController: UIViewController {
     //MARK: - Constants
     private let kDecimalSeparator = Locale.current.decimalSeparator
     private let kMaxLenght = 9
-    //private let kMaxValue: Double = 999999999
-    //private let kMinValue = 0.00000001
+    private let kInitialTotal = "initialTotal"
     
     private enum OperationType {
         case none
@@ -203,7 +202,7 @@ final class HomeViewController: UIViewController {
         }
         
         if isDecimal {
-            currentTemp = "\(currentTemp)\(kDecimalSeparator)"
+            currentTemp = currentTemp + kDecimalSeparator!
             isDecimal = false
         }
         
@@ -227,6 +226,8 @@ final class HomeViewController: UIViewController {
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        total = UserDefaults.standard.double(forKey: kInitialTotal)
         
         setupUI()
         result()
@@ -252,6 +253,7 @@ final class HomeViewController: UIViewController {
         operatorSubstractionButton.roundEdge()
         operatorAdditionButton.roundEdge()
         operatorResultButton.roundEdge()
+        operatorResultButton.backgroundColor = .orange
         numberDecimalButton.setTitle(kDecimalSeparator, for: .normal)
     }
     
@@ -296,6 +298,7 @@ final class HomeViewController: UIViewController {
         }
         operation = .none
         selectVisualOperation()
+        UserDefaults.standard.set(total, forKey: kInitialTotal)
     }
     
     func selectVisualOperation() {
