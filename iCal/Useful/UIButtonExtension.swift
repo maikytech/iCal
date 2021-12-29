@@ -7,8 +7,10 @@
 
 import UIKit
 
+private let orange = UIColor(red: 254/255, green: 148/255, blue: 0/255, alpha: 1)
+
 extension UIButton {
-    
+
     func roundEdge() {
         self.layer.cornerRadius = bounds.height / 2
         clipsToBounds = true
@@ -17,7 +19,7 @@ extension UIButton {
     func bounce() {
         UIView.animate(withDuration: 0.1, animations: {
             self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-        }) { (completion) in
+        }) {(completion) in
             UIView.animate(withDuration: 0.1, animations: {
                 self.transform = CGAffineTransform.identity
             })
@@ -28,9 +30,7 @@ extension UIButton {
         UIView.animate(withDuration: 0.1, animations: {
             self.alpha = 0.5
         }) {(completion) in
-            UIView.animate(withDuration: 0.1, animations: {
-                self.alpha = 1
-            })
+            self.alpha = 1
         }
     }
     
@@ -38,9 +38,12 @@ extension UIButton {
         UIView.animate(withDuration: 0.1, animations: {
             self.transform = CGAffineTransform(translationX: 10, y: 0)
         }) {(completion) in
-            UIView.animate(withDuration: 0.1, animations: {
-                self.transform = .identity
-            })
+            self.transform = CGAffineTransform.identity
         }
+    }
+    
+    func selectOperation(_ select: Bool) {
+        backgroundColor = select ? .white : .orange
+        setTitleColor(select ? .orange : .white, for: .normal)
     }
 }

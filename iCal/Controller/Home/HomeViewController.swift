@@ -46,8 +46,8 @@ final class HomeViewController: UIViewController {
     //MARK: - Constants
     private let kDecimalSeparator = Locale.current.decimalSeparator
     private let kMaxLenght = 9
-    private let kMaxValue: Double = 999999999
-    private let kMinValue = 0.00000001
+    //private let kMaxValue: Double = 999999999
+    //private let kMinValue = 0.00000001
     
     private enum OperationType {
         case none
@@ -63,6 +63,22 @@ final class HomeViewController: UIViewController {
         let locale = Locale.current
         formatter.groupingSeparator = ""
         formatter.decimalSeparator = locale.decimalSeparator
+        formatter.numberStyle = .decimal
+        formatter.maximumIntegerDigits = 100
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 100
+        return formatter
+    }()
+    
+    //Counts the number of digits without decimal separator
+    private let auxTotalFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ""
+        formatter.decimalSeparator = ""
+        formatter.numberStyle = .decimal
+        formatter.maximumIntegerDigits = 100
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 100
         return formatter
     }()
     
@@ -85,23 +101,6 @@ final class HomeViewController: UIViewController {
         formatter.exponentSymbol = "e"
         return formatter
     }()
-    
-    //MARK: - Initialization
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    //MARK: - viewDidLoad
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-        result()
-    }
     
     //MARK: - IBActions
     @IBAction func operatorACAction(_ sender: UIButton) {
@@ -126,30 +125,46 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func operatorDivisionAction(_ sender: UIButton) {
-        result()
+        if operation != .none {
+            result()
+        }
         isOperationSelected = true
         operation = .division
+        
+        sender.selectOperation(true)
         sender.shine()
     }
     
     @IBAction func operatorMultiplicationAction(_ sender: UIButton) {
-        result()
+        if operation != .none {
+            result()
+        }
         isOperationSelected = true
         operation = .multiplication
+        
+        sender.selectOperation(true)
         sender.shine()
     }
     
     @IBAction func operatorSubstractionAction(_ sender: UIButton) {
-        result()
+        if operation != .none {
+            result()
+        }
         isOperationSelected = true
         operation = .substraction
+        
+        sender.selectOperation(true)
         sender.shine()
     }
     
     @IBAction func operatorAdditionAction(_ sender: UIButton) {
-        result()
+        if operation != .none {
+            result()
+        }
         isOperationSelected = true
         operation = .addiction
+        
+        sender.selectOperation(true)
         sender.shine()
     }
     
@@ -159,22 +174,26 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func numberDecimalAction(_ sender: UIButton) {
-        let currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
+        let currentTemp = auxTotalFormatter.string(from: NSNumber(value: temp))!
         if !isOperationSelected && currentTemp.count >= kMaxLenght {
             return
         }
         
         resultLabel.text = resultLabel.text! + kDecimalSeparator!
         isDecimal = true
+        
+        selectVisualOperation()
         sender.shine()
     }
     
     @IBAction func numberAction(_ sender: UIButton) {
         operatorACButton.setTitle("C", for: .normal)
-        var currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
+        var currentTemp = auxTotalFormatter.string(from: NSNumber(value: temp))!
         if !isOperationSelected && currentTemp.count >= kMaxLenght {
             return
         }
+        
+        currentTemp = auxFormatter.string(from: NSNumber(value: temp))!
         
         if isOperationSelected {
             total = total == 0 ? temp : total
@@ -192,7 +211,25 @@ final class HomeViewController: UIViewController {
         temp = Double(currentTemp + String(number))!
         resultLabel.text = printFormatter.string(from: NSNumber(value: temp))
         
+        selectVisualOperation()
         sender.shine()
+    }
+    
+    //MARK: - Initialization
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - viewDidLoad
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupUI()
+        result()
     }
     
     func setupUI() {
@@ -222,7 +259,6 @@ final class HomeViewController: UIViewController {
         operation = .none
         operatorACButton.setTitle("AC", for: .normal)
         if temp != 0 {
-            print("temp is: \(temp)")
             temp = 0
             resultLabel.text = "0"
         }else {
@@ -253,11 +289,57 @@ final class HomeViewController: UIViewController {
             break
         }
         
-        if total <= kMaxValue || total >= kMinValue {
+        if let currentTotal = auxTotalFormatter.string(from: NSNumber(value: total)), currentTotal.count > kMaxLenght {
+            resultLabel.text = printScientificFormatter.string(from: NSNumber(value: total))
+        }else {
             resultLabel.text = printFormatter.string(from: NSNumber(value: total))
         }
+        operation = .none
+        selectVisualOperation()
+    }
+    
+    func selectVisualOperation() {
+        if !isOperationSelected {
+            operatorAdditionButton.selectOperation(false)
+            operatorSubstractionButton.selectOperation(false)
+            operatorMultiplicationButton.selectOperation(false)
+            operatorDivisionButton.selectOperation(false)
+            
+        }else {
+//            switch operation {
+//            case .none, .percent:
+//                operatorAdditionButton.selectOperation(false)
+//                operatorSubstractionButton.selectOperation(false)
+//                operatorMultiplicationButton.selectOperation(false)
+//                operatorDivisionButton.selectOperation(false)
+//                break
+//            case .addiction:
+//                operatorAdditionButton.selectOperation(true)
+//                operatorSubstractionButton.selectOperation(false)
+//                operatorMultiplicationButton.selectOperation(false)
+//                operatorDivisionButton.selectOperation(false)
+//                break
+//            case .substraction:
+//                operatorAdditionButton.selectOperation(false)
+//                operatorSubstractionButton.selectOperation(true)
+//                operatorMultiplicationButton.selectOperation(false)
+//                operatorDivisionButton.selectOperation(false)
+//                break
+//            case .multiplication:
+//                operatorAdditionButton.selectOperation(false)
+//                operatorSubstractionButton.selectOperation(false)
+//                operatorMultiplicationButton.selectOperation(true)
+//                operatorDivisionButton.selectOperation(false)
+//                break
+//            case .division:
+//                operatorAdditionButton.selectOperation(false)
+//                operatorSubstractionButton.selectOperation(false)
+//                operatorMultiplicationButton.selectOperation(false)
+//                operatorDivisionButton.selectOperation(true)
+//                break
+//            }
+        }
         
-        print("Total = \(total)")
     }
     
 }
