@@ -173,8 +173,9 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction func numberDecimalAction(_ sender: UIButton) {
+        
         let currentTemp = auxTotalFormatter.string(from: NSNumber(value: temp))!
-        if !isOperationSelected && currentTemp.count >= kMaxLenght {
+        if resultLabel.text?.contains(kDecimalSeparator!) ?? false || (!isOperationSelected && currentTemp.count >= kMaxLenght) {
             return
         }
         
@@ -184,6 +185,7 @@ final class HomeViewController: UIViewController {
         selectVisualOperation()
         sender.shine()
     }
+    
     
     @IBAction func numberAction(_ sender: UIButton) {
         operatorACButton.setTitle("C", for: .normal)
